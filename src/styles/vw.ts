@@ -1,13 +1,14 @@
-import config from "@/config/app.config";
+import config from '@/config/app.config';
 
 type WidthValue = number | string;
+
 // Property Name, Desktop, Tablet, Mobile
 type MQProperty = [string, WidthValue, WidthValue, WidthValue];
 
 type Scale = (width: number) => string;
 
 const pxScale = (deviceVwSize: number, windowWidth: number) => (
-  width: number
+  width: number,
 ): number => {
   return (width / deviceVwSize) * windowWidth;
 };
@@ -19,18 +20,16 @@ const scaleVwMobile = scale(config.stage.mobile);
 const scaleVwTablet = scale(config.stage.tablet);
 const scaleVwDesktop = scale(config.stage.desktop);
 
-const setProperty = (scaleVw: Scale) => (width: WidthValue) =>
-  typeof width === "string" ? width : scaleVw(width);
+const setProperty = (scaleVw: Scale) => (width: WidthValue) => (typeof width === 'string' ? width : scaleVw(width));
 
 const scaleMobile = setProperty(scaleVwMobile);
 const scaleTablet = setProperty(scaleVwTablet);
 const scaleDesktop = setProperty(scaleVwDesktop);
 
 function vw(properties: MQProperty[]) {
-  const generateProperties = (scaleFn: Function, propertyIdx: number) =>
-    properties
-      .map((prop) => `${prop[0]}: ${scaleFn(prop[propertyIdx])};`)
-      .join("");
+  const generateProperties = (scaleFn: Function, propertyIdx: number) => properties
+    .map((prop) => `${prop[0]}: ${scaleFn(prop[propertyIdx])};`)
+    .join('');
 
   return `
     ${generateProperties(scaleMobile, 3)}
