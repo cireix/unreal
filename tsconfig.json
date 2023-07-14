@@ -1,0 +1,25 @@
+{
+    "include": [
+        "./src"
+    ],
+    "files": [
+        "types/global.d.ts"
+    ],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        },
+        "jsx": "react",
+        "lib": [
+            "dom",
+            "es2015"
+        ]
+    }
+}
