@@ -1,7 +1,6 @@
 {
-    "include": [
-        "./src"
-    ],
+    "include": ["./src"],
+    "extends": ["./tsconfig.paths.json"],
     "files": [
         "types/global.d.ts"
     ],
@@ -11,11 +10,6 @@
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "paths": {
-            "@/*": [
-                "src/*"
-            ]
-        },
         "jsx": "react",
         "lib": [
             "dom",
