@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import { ReactComponent as LogoSVG } from "./assets/logo.svg";
+import {ReactComponent as LogoSVG} from "./assets/logo.svg";
 export default function App() {
   return (
     <div className="App">
