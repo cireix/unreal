@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Parallax } from 'react-scroll-parallax';
 import styled from 'styled-components';
-import useWindowHeight from '@/hooks/useWindowHeight';
+import useScreen from '@/hooks/useScreen';
+import { vw } from '@/styles';
 
 import IntroSection from './components/IntroSection';
 import TitleElement from './components/TitleElement';
 import VideoElement from './components/VideoElement';
 
 const Root = styled.section`
-    height: 400vh;
+    ${vw([
+      ['height', '400vh', '400vh', '300vh'],
+    ])}
     width: 100%;
 `;
 
@@ -23,11 +26,17 @@ const Container = styled(Parallax)`
     overflow: hidden;
 `;
 
-const videoPoster = 'https://cdn2.unrealengine.com/ue5-bigger-worlds-placeholder-1920x1080-b8ddb42726e1.png';
-const videoSource = 'https://cdn2.unrealengine.com/unreal-engine-5-bigger-worlds-intro-1b3ac82d178e.mp4';
-
-const Hero = () => {
-  const { windowHeight } = useWindowHeight();
+interface HeroProps {
+  videoPoster: string;
+  videoSource: string;
+  title: string;
+  subtitle: string;
+}
+const Hero = (props: HeroProps) => {
+  const {
+ videoPoster, videoSource, title, subtitle,
+} = props;
+  const { windowHeight, isMobile } = useScreen();
   const [hasScrolled, setHasScrolled] = useState(false);
 
   const [progress, setProgress] = useState(0);
@@ -35,14 +44,14 @@ const Hero = () => {
 
   const containerStyles = () => {
     if (progress < 1) return ({ position: 'fixed' as 'fixed', top: '0' });
-    return ({ position: 'absolute' as 'absolute', top: '300vh' });
+    return ({ position: 'absolute' as 'absolute', top: isMobile ? '200vh' : '300vh' });
   };
 
   return (
     <Root>
       <Container
         startScroll={windowHeight}
-        endScroll={windowHeight * 3}
+        endScroll={windowHeight * (isMobile ? 2 : 3)}
         onProgressChange={onProgressChange}
         style={containerStyles()}
       >
@@ -55,7 +64,10 @@ const Hero = () => {
           src={videoSource}
           hasScrolled={hasScrolled}
         />
-        <TitleElement />
+        <TitleElement
+          title={title}
+          subtitle={subtitle}
+        />
       </Container>
 
     </Root>

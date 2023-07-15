@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import { ReactComponent as LogoSVG } from '@/assets/images/global/logo.svg';
 import BackgroundImg from '@/assets/images/hero/background.png';
-import useWindowHeight from '@/hooks/useWindowHeight';
-import vw from '@/styles/vw';
+import useScreen from '@/hooks/useScreen';
+import { vw } from '@/styles';
 
 const Root = styled(Parallax)`
     position: absolute;
@@ -33,8 +33,8 @@ const Logo = styled(LogoSVG)`
     transform: translate(-50%, -50%);
     opacity: 0.95;
     ${vw([
-      ['width', 500, 200, 200],
-      ['height', 500, 200, 200],
+      ['width', 400, 200, 150],
+      ['height', 400, 200, 150],
     ])}
 `;
 
@@ -45,7 +45,7 @@ interface IntroSectionProps {
 
 const IntroSection = (props: IntroSectionProps) => {
   const { hasScrolled, setHasScrolled } = props;
-  const { windowHeight } = useWindowHeight();
+  const { windowHeight } = useScreen();
 
   const onProgressChange = (progress: number) => {
     if (progress > 0) {

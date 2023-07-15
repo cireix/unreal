@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Hero from '@/common/hero/Hero';
+import Home from '@/pages/Home';
 
 const App = () => {
   useEffect(() => {
@@ -7,10 +7,7 @@ const App = () => {
     window.history.scrollRestoration = 'manual';
   }, []);
   return (
-    <>
-      <Hero />
-      <div style={{ background: 'red', height: '100vh', width: '100%' }}>123</div>
-    </>
+    <Home />
   );
 };
 

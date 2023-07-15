@@ -32,6 +32,7 @@
         { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
       ],
       "indent": "off",
+      "import/prefer-default-export": "off",
       "implicit-arrow-linebreak": "off",
       "no-unused-vars": "off",
       "import/no-dynamic-require": "off",

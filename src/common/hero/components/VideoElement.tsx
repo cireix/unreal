@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Parallax } from 'react-scroll-parallax';
 import styled from 'styled-components';
-import useWindowHeight from '@/hooks/useWindowHeight';
+import useScreen from '@/hooks/useScreen';
 
 const Root = styled(Parallax)`
   perspective: 300vh;
@@ -25,7 +25,7 @@ interface VideoElementProps {
 
 const VideoElement = (props: VideoElementProps) => {
   const { poster, src, hasScrolled } = props;
-  const { windowHeight } = useWindowHeight();
+  const { windowHeight, isMobile } = useScreen();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [progress, setProgress] = useState(0);
   const onProgressChange = (y: number) => setProgress(y);
@@ -40,10 +40,13 @@ const VideoElement = (props: VideoElementProps) => {
     }
   }, [videoRef, hasScrolled]);
 
-  const videoStyles = () => ({
-    transform: `rotateX(${progress * -40}deg) scale(${1 - (progress * 0.5)})`,
-    filter: `blur(${progress * 30}px)`,
-  });
+  const videoStyles = () => {
+    if (isMobile) return ({});
+    return ({
+      transform: `rotateX(${progress * -40}deg) scale(${1 - (progress * 0.5)})`,
+      filter: `blur(${progress * 30}px)`,
+    });
+  };
 
   return (
     <Root

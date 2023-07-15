@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Parallax } from 'react-scroll-parallax';
 import styled from 'styled-components';
-import useWindowHeight from '@/hooks/useWindowHeight';
-import vw from '@/styles/vw';
+import useScreen from '@/hooks/useScreen';
+import { vw } from '@/styles';
 
 const Root = styled(Parallax)`
     position: absolute;
@@ -33,8 +33,14 @@ const Subtitle = styled.h2`
     ${vw([['width', 1000, 700, 300]])}
 `;
 
-const TitleElement = () => {
-  const { windowHeight } = useWindowHeight();
+interface TitleElementProps {
+  title: string;
+  subtitle: string;
+}
+
+const TitleElement = (props: TitleElementProps) => {
+  const { title, subtitle } = props;
+  const { windowHeight } = useScreen();
   const [progress, setProgress] = useState(0);
   const onProgressChange = (y: number) => setProgress(y);
 
@@ -114,11 +120,11 @@ const TitleElement = () => {
       onProgressChange={onProgressChange}
     >
       <TitleWrapper>
-        <Title style={titleStyles()}>Unreal Engine 5</Title>
+        <Title style={titleStyles()}>{title}</Title>
       </TitleWrapper>
       <SubtitleWrapper>
         <Subtitle style={subtitleStyles()}>
-          Bigger worlds. Bigger stories. More Unreal.
+          {subtitle}
         </Subtitle>
       </SubtitleWrapper>
     </Root>

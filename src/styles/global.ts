@@ -22,21 +22,40 @@ export default createGlobalStyle`
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-text-stroke: 0;
     color: ${theme.color.white};
-    background: rgb(14, 17, 40);
+    background: ${theme.color.blue};
+    font-family: ${theme.font.family};
   }
 
   h1 {
-    font-family: ${theme.font.family};
     ${vw([['font-size', 72, 48, 36]])}
     font-weight: normal;
     letter-spacing: -1px;
   }
 
   h2 {
-    font-family: ${theme.font.family};
-    /* TODO: change this */
     ${vw([['font-size', 72, 48, 24]])}
     font-weight: normal;
     letter-spacing: -1px;
+  }
+  h3 {
+    ${vw([['font-size', 36, 24, 18]])}
+    font-weight: normal;
+    letter-spacing: -1px;
+  }
+
+  button, a {
+    font-weight: bold;
+    background: ${theme.color.magenta};
+    color: ${theme.color.black};
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    ${vw([
+      ['font-size', 18, 14, 10],
+      ['padding', 12, 12, 8],
+      ['padding-left', 24, 24, 12],
+      ['padding-right', 24, 24, 12],
+    ])}
+    cursor: pointer;
   }
 `;
