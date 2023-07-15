@@ -1,18 +1,16 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-
-import GlobalStyle from '@/styles/global';
+import React, { useEffect } from 'react';
 import Hero from '@/common/hero/Hero';
-import theme from '@/styles/theme';
 
 const App = () => {
+  useEffect(() => {
+    // Prevent scroll restoration on refresh
+    window.history.scrollRestoration = 'manual';
+  }, []);
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-      </ThemeProvider>
+    <>
       <Hero />
-    </div>
+      <div style={{ background: 'red', height: '100vh', width: '100%' }}>123</div>
+    </>
   );
 };
 

@@ -1,40 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Parallax } from 'react-scroll-parallax';
 import styled from 'styled-components';
-import { ReactComponent as LogoSVG } from '@/assets/images/global/logo.svg';
-import BackgroundImg from '@/assets/images/hero/background.png';
+import useWindowHeight from '@/hooks/useWindowHeight';
+
+import IntroSection from './components/IntroSection';
+import TitleElement from './components/TitleElement';
+import VideoElement from './components/VideoElement';
 
 const Root = styled.section`
     height: 400vh;
+    width: 100%;
 `;
 
-const Background = styled.img`
-    position: absolute;
-    top: 0;
-    left: 50%;
-    height: 100%;
-    width: auto;
-    transform: translateX(-50%);
-`;
-
-const Intro = styled.div`
-    position: fixed;
+const Container = styled(Parallax)`
     top: 0;
     left: 0;
     height: 100vh;
-    width: 100vw;
-    background: red;
-    // background-position: center center;
-    // background-repeat: no-repeat;
-    // background-image: url(${BackgroundImg});
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 `;
 
+const videoPoster = 'https://cdn2.unrealengine.com/ue5-bigger-worlds-placeholder-1920x1080-b8ddb42726e1.png';
+const videoSource = 'https://cdn2.unrealengine.com/unreal-engine-5-bigger-worlds-intro-1b3ac82d178e.mp4';
+
 const Hero = () => {
+  const { windowHeight } = useWindowHeight();
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  const [progress, setProgress] = useState(0);
+  const onProgressChange = (y: number) => setProgress(y);
+
+  const containerStyles = () => {
+    if (progress < 1) return ({ position: 'fixed' as 'fixed', top: '0' });
+    return ({ position: 'absolute' as 'absolute', top: '300vh' });
+  };
+
   return (
     <Root>
-      {/* <LogoSVG /> */}
-      <Intro>
-        <Background src={BackgroundImg} />
-      </Intro>
+      <Container
+        startScroll={windowHeight}
+        endScroll={windowHeight * 3}
+        onProgressChange={onProgressChange}
+        style={containerStyles()}
+      >
+        <IntroSection
+          hasScrolled={hasScrolled}
+          setHasScrolled={setHasScrolled}
+        />
+        <VideoElement
+          poster={videoPoster}
+          src={videoSource}
+          hasScrolled={hasScrolled}
+        />
+        <TitleElement />
+      </Container>
 
     </Root>
   );

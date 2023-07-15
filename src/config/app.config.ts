@@ -1,8 +1,8 @@
 export default {
   stage: {
-    mobile: 393,
-    tablet: 1028,
-    desktop: 1920,
+    mobile: 360,
+    tablet: 768,
+    desktop: 1760,
   },
   mediaQuery: {
     tablet: 576,

@@ -4,6 +4,6 @@ export default {
     white: '#FFFFFF',
   },
   font: {
-    family: 'Roboto, sans-serif',
+    family: 'Brutal_Light, Open Sans, sans-serif',
   },
 };
