@@ -50,12 +50,16 @@ export default createGlobalStyle`
     letter-spacing: 2px;
     text-transform: uppercase;
     text-decoration: none;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out;
     ${vw([
       ['font-size', 18, 14, 10],
       ['padding', 12, 12, 8],
       ['padding-left', 24, 24, 12],
       ['padding-right', 24, 24, 12],
     ])}
-    cursor: pointer;
+    &:hover {
+      box-shadow: ${theme.color.magenta} 0px 0px 18px;
+    }
   }
 `;

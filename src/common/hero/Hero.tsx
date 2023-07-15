@@ -7,6 +7,7 @@ import { vw } from '@/styles';
 import IntroSection from './components/IntroSection';
 import TitleElement from './components/TitleElement';
 import VideoElement from './components/VideoElement';
+import ScrollIndicator from './components/ScrollIndicator';
 
 const Root = styled.section`
     ${vw([
@@ -47,6 +48,11 @@ const Hero = (props: HeroProps) => {
     return ({ position: 'absolute' as 'absolute', top: isMobile ? '200vh' : '300vh' });
   };
 
+  const scrollIndicatorStyles = () => {
+    if (progress < 0.5) return ({ opacity: 1 });
+    return ({ opacity: 0 });
+  };
+
   return (
     <Root>
       <Container
@@ -68,6 +74,7 @@ const Hero = (props: HeroProps) => {
           title={title}
           subtitle={subtitle}
         />
+        <ScrollIndicator style={scrollIndicatorStyles()} />
       </Container>
 
     </Root>

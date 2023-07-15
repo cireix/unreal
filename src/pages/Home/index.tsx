@@ -8,11 +8,14 @@ const Root = styled.main``;
 const videoPoster = 'https://cdn2.unrealengine.com/ue5-bigger-worlds-placeholder-1920x1080-b8ddb42726e1.png';
 const videoSource = 'https://cdn2.unrealengine.com/unreal-engine-5-bigger-worlds-intro-1b3ac82d178e.mp4';
 
+const Bar = styled.div`
+    width: 100%;
+    height: 60px;
+    background: #202337;
+`;
 const Blank = styled.div`
     height: 100vh;
     width: 100%;
-    background: white;
-    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,6 +40,7 @@ const Home = () => {
             href: 'https://www.unrealengine.com/en-US/download',
           }}
         />
+        <Bar />
         <Blank>
           <h1>Intentionally left blank.</h1>
         </Blank>
